@@ -1,3 +1,29 @@
-<h1>
-  {{title}}
-</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <label>
+ <span>Type your Name</span>
+ <input type="text" name="Name" placeholder="Type your fullName" ngModel #UserName="ngModel" required/>
+  </label>
+ <div *ngIf="UserName.errors?.required && UserNames.touched" class="errors">
+   Name is required
+ </div>
+
+<div ngModelGroup="account" #userAcount="ngModelGroup">
+<label>
+    <span>Type your Email</span>
+ <input type="email" name="email" placeholder="Type your Email" ngModel #Useremail="ngModel" required />
+</label>
+ <div *ngIf="userAcount.errors?.required && userAcount.touched" class="errors">
+   confirm email is required
+ </div>
+
+  <label>
+    <span>Type your Email</span>
+ <input type="email" name="confirm" placeholder="Confirm your Email" ngModel #Useremail="ngModel" required/>
+</label>
+<div *ngIf="userAcount.errors?.required && userAcount.touched" class="errors">
+  confirm email is required
+</div>
+
+  </div>
+  <button type="submit" [disabled]="f.invalid">Submit</button>
+</form>
